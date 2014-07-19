@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    android:orientation="vertical">
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal">
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <ImageView
+            android:id="@+id/statusIcon" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/status_active" />
+        
+        <TextView
+            android:id="@+id/statusName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#878b8e"
+            android:textSize="12sp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:text="On Route" />
+        
+    </LinearLayout>
+    
+    <ImageView
+        android:id="@+id/checkmarkIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:src="@drawable/status_checkmark"
+        android:visibility="invisible" />
+
+</FrameLayout>
+</LinearLayout>

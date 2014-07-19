@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CHEKit</string>
+    <string name="enter_login">Enter login</string>
+    <string name="enter_password">Enter password</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="work_tasks">Work Tasks</string>
+    <string name="issued">Issued</string>
+    <string name="accepted">Accepted</string>
+    <string name="passed">Passed</string>
+    <string name="due_pattern">Due: %1$s</string>
+    <string name="duration_pattern">Duration: %1$s</string>
+    <string name="accept">Accept</string>
+    <string name="pass">Pass</string>
+    <string name="unpass">Unpass</string>
+    <string name="notes">Notes:</string>
+    <string name="notes_title">Notes</string>
+    <string name="photos">Photos:</string>
+    <string name="photos_title">Photos</string>
+    <string name="map">Map</string>
+    <string name="accept_task">Would like to accept\nthis task?</string>
+    <string name="pass_task">Do you want to pass\nthis task?</string>
+    <string name="unpass_task">Would like to unpass\nthis task?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="incorrect_user_credentials">User with this login credentils does not exists.</string>
+    <string name="task_screen">Task screen</string>
+    <string name="task_status">Task status:</string>
+    <string name="update_status">Set status to \"%1$s\"?</string>
+    <string name="confirm_logout">Log out?</string>
+    <string name="task_location">Task Location</string>
+    <string name="new_notes">New Notes</string>
+    <string name="edit_notes">Edit Notes</string>
+    <string name="save">Save</string>
+    <string name="forget_password">forget password ?</string>
+    <string name="password_reset_title">Password reset</string>
+    <string name="password_reset_text">Please enter email you used for\nregistering with CHEKit to receive\npassword recovery</string>
+    <string name="reset">Reset</string>
+    <string name="email">Email</string>
+    <string name="notice">Notice</string>
+    <string name="no_user_in_database">User with this email doesn\'t exists in the database</string>
+    <string name="password_recovery_sent">Password recovery email sent</string>
+    <string name="photo">Photo</string>
+    <string name="delete">Delete</string>
+    <string name="sort_by_due_date">Sort by Due Date</string>
+    <string name="group_on_division">Group on Division</string>
+    <string name="group_on_status">Group on Status</string>
+    
+    <string name="logging_in">Log in, please wait &#8230;</string>
+    <string name="logging_out">Log out, please wait &#8230;</string>
+    <string name="loading_tasks">Loading tasks, please wait</string>
+    <string name="information">Information</string>
+    <string name="error">Error</string>
+    <string name="no_connection">Please make sure that connection is active</string>
+    <string name="no_tasks">No tasks</string>
+    <string name="accepting_task">Accepting task, please wait &#8230;</string>
+    <string name="passing_task">Passing task, please wait &#8230;</string>
+    <string name="unpassing_task">Unpassing task, please wait &#8230;</string>
+    <string name="loading_task">Loading task, please wait &#8230;</string>
+    <string name="updating_work_status">Updating status, please wait &#8230;</string>
+    <string name="loading_notes">Loading notes, please wait &#8230;</string>
+    <string name="loading_note">Loading note, please wait &#8230;</string>
+    <string name="no_notes">No notes</string>
+    <string name="updating_note">Updating note, please wait &#8230;</string>
+    <string name="adding_note">Adding note, please wait &#8230;</string>
+    <string name="deleting_note">Deleting note, please wait &#8230;</string>
+    <string name="confirm_delete_note">Are you sure you want to delete this note?</string>
+    <string name="sending_email">Sending email, please wait &#8230;</string>
+    <string name="loading_photos">Loading photos, please wait &#8230;</string>
+    <string name="no_photos">No photos</string>
+    <string name="loading_photo">Loading photo, please wait &#8230;</string>
+    <string name="deleting_photo">Deleting photo, please wait &#8230;</string>
+    <string name="confirm_delete_photo">Are you sure you want to delete this photo?</string>
+    <string name="uploading_photo">Uploading, please wait &#8230;</string>
+    <string name="internal_server_error">Internal Server Error</string>
+    
+    <string name="pull_to_refresh_pull_label">Pull down for update</string>
+    <string name="pull_to_refresh_release_label">Release for update</string>
+    <string name="pull_to_refresh_refreshing_label">Update task feed &#8230;</string>
+    
+    <string-array name="status_names">
+        <item>On Route</item>
+        <item>On Site</item>
+        <item>Verify Site</item>
+        <item>Task Start</item>
+        <item>Task Active</item>
+        <item>Task Complete</item>
+        <item>Task Problems Delayed</item>
+        <item>Task Incomplete Leave Site</item>
+        <item>Task Safety Issues</item>
+        <item>Task Problems Stop</item>
+        <item>Task Safety Danger</item>
+        <item>Task Problems Leave Site</item>
+    </string-array>
+
+</resources>

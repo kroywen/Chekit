@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#303030">
+        
+        <LinearLayout 
+            android:id="@+id/photosBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/tab_background"
+            android:clickable="true">
+            
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/photos_icon_big" />
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#1abf75" />
+            
+        </LinearLayout>
+        
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#555555"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp" />
+        
+        <LinearLayout 
+            android:id="@+id/notesBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/tab_background"
+            android:clickable="true">
+            
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/notes_icon_big" />
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#1abf75" />
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:paddingLeft="25dp"
+        android:background="@android:color/white">
+        
+        <TextView
+            android:id="@+id/taskTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="20sp"
+            android:textColor="#303030"
+            android:textStyle="bold" />
+        
+        <TextView
+            android:id="@+id/dueView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/taskTitle"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/due_icon"
+            android:drawablePadding="5dp"
+            android:textColor="#878b8e"
+            android:textSize="12sp" />
+        
+        <TextView
+            android:id="@+id/durationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dueView"
+            android:layout_alignBaseline="@id/dueView"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/duration_icon"
+            android:drawablePadding="5dp"
+            android:textColor="#878b8e"
+            android:textSize="12sp" />
+        
+    </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#b2b2b2" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@drawable/task_screen_background">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:paddingLeft="25dp"
+            android:textColor="#878b8e"
+            android:textStyle="bold"
+            android:text="@string/task_status" />
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#d0cece" />
+        
+        <GridView
+            android:id="@+id/statusList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="3"
+            android:columnWidth="130dp"
+            android:stretchMode="spacingWidth"
+            android:horizontalSpacing="25dp"
+            android:gravity="center" />
+        
+    </LinearLayout>
+
+</LinearLayout>

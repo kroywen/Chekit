@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
+
+    <ImageView 
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/logo" />
+    
+    <EditText
+        android:id="@+id/usernameView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_below="@id/logo"
+        android:hint="@string/enter_login"
+        android:textColorHint="#d7cdcd"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="#303030"
+        android:background="@drawable/edittext_background" />
+    
+    <EditText
+        android:id="@+id/passwordView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/usernameView"
+        android:hint="@string/enter_password"
+        android:textColorHint="#d7cdcd"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textColor="#303030"
+        android:background="@drawable/edittext_background" />
+    
+    <RelativeLayout 
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordView"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/login_btn_background"
+        android:padding="8dp">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/key"
+            android:drawablePadding="10dp"
+            android:text="@string/login" />
+        
+    </RelativeLayout>
+    
+    <TextView
+        android:id="@+id/forgetPassBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:textColor="#a9a9a9"
+        android:textSize="18sp"
+        android:text="@string/forget_password" />
+
+</RelativeLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1">
+	    
+	    <TextView
+	        android:id="@+id/empty"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerInParent="true"
+	        android:text="@string/no_tasks"
+	        android:visibility="invisible" />
+	    
+	    <com.handmark.pulltorefresh.library.PullToRefreshListView
+		    android:id="@+id/list"
+		    android:layout_height="match_parent"
+		    android:layout_width="match_parent"
+		    android:paddingTop="5dp"
+		    android:paddingBottom="5dp"
+		    android:divider="@null" 
+		    android:listSelector="@android:color/transparent" />
+	
+	</RelativeLayout>
+	
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:background="#efeff4"
+	    android:gravity="center_horizontal"
+	    android:padding="10dp">
+	    
+	    <RadioGroup
+    	    android:id="@+id/sortGroup"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:orientation="horizontal"
+    	    android:gravity="center_vertical">
+    	    
+    	    <RadioButton 
+    	        android:id="@+id/groupByDueDateBtn"
+    	        android:layout_width="100dp"
+    	        android:layout_height="40dp"
+    	        android:text="@string/sort_by_due_date"
+    	        android:gravity="center"
+    	        android:paddingLeft="5dp"
+    	        android:paddingRight="5dp"
+    	        android:background="@drawable/rb_left_background"
+    	        android:textColor="@color/rb_text_color"
+    	        android:textSize="12sp"
+    	        android:button="@null"
+    	        android:checked="true" />
+    	    
+    	    <RadioButton 
+    	        android:id="@+id/groupByDivisionBtn"
+    	        android:layout_width="100dp"
+    	        android:layout_height="40dp"
+    	        android:layout_marginLeft="-2dp"
+    	        android:text="@string/group_on_division"
+    	        android:gravity="center"
+    	        android:paddingLeft="5dp"
+    	        android:paddingRight="5dp"
+    	        android:background="@drawable/rb_middle_background"
+    	        android:textColor="@color/rb_text_color"
+    	        android:textSize="12sp"
+    	        android:button="@null" />
+    	    
+    	    <RadioButton 
+    	        android:id="@+id/groupByStatusBtn"
+    	        android:layout_width="100dp"
+    	        android:layout_height="40dp"
+    	        android:layout_marginLeft="-2dp"
+    	        android:text="@string/group_on_status"
+    	        android:gravity="center"
+    	        android:paddingLeft="5dp"
+    	        android:paddingRight="5dp"
+    	        android:background="@drawable/rb_right_background"
+    	        android:textColor="@color/rb_text_color"
+    	        android:textSize="12sp"
+    	        android:button="@null" />
+    	    
+    	</RadioGroup>
+	    
+	</LinearLayout>
+
+</LinearLayout>
