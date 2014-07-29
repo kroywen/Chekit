@@ -73,8 +73,12 @@ public class TaskScreen extends BaseScreen implements OnClickListener, OnItemCli
 	@Override
 	protected void onStart() {
 		super.onStart();
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0.0f, this);
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0.0f, this);
+		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0.0f, this);
+		}
+		if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0.0f, this);
+		}
 	}
 	
 	@Override
