@@ -40,7 +40,11 @@ public class BaseScreen extends FragmentActivity implements OnApiResponseListene
 		 }
 		 progressDialog.setMessage(message);
 		 if (!progressDialog.isShowing()) {
-			 progressDialog.show();
+			 try {
+				 progressDialog.show();
+			 } catch (Exception e) {
+				 e.printStackTrace();
+			 }
 		 }
 	}
 	

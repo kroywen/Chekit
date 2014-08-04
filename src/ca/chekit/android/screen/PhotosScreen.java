@@ -132,8 +132,6 @@ public class PhotosScreen extends BaseScreen implements OnClickListener, OnItemC
 	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 	    String imageFileName = "JPEG_" + timeStamp + "_";
 	    File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-//	    File storageDir = getFilesDir();
-//	    File image = File.createTempFile(imageFileName, ".jpg", storageDir);
 	    File image = new File(storageDir, imageFileName + ".jpg");
 	    currentPhotoPath = image.getAbsolutePath();
 	    return image;

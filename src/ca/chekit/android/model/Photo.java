@@ -133,7 +133,14 @@ public class Photo {
 					options.outWidth = imageView.getWidth();
 					options.outHeight = imageView.getHeight();
 					
-					bitmap = BitmapFactory.decodeStream(is, null, options);
+					// Memory may be not enough on old devices, so should handle OutOfMemoryError
+					// in order to prevent stopping application
+					try {
+						bitmap = BitmapFactory.decodeStream(is, null, options);
+					} catch (OutOfMemoryError error) {
+						error.printStackTrace();
+						bitmap = null;
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
