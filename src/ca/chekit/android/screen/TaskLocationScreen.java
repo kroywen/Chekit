@@ -129,7 +129,7 @@ public class TaskLocationScreen extends BaseScreen {
 						.snippet(worktask.getWorkStatus().name())
 					);
 					
-					map.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 4));
+					map.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 10));
 					
 					map.setInfoWindowAdapter(new InfoWindowAdapter() {
 						@Override

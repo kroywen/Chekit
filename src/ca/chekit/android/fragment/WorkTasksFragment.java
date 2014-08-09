@@ -55,7 +55,7 @@ public abstract class WorkTasksFragment extends Fragment implements OnItemClickL
 		return view;
 	}
 	
-	private void initializeViews(View view) {
+	protected void initializeViews(View view) {
 		list = (PullToRefreshListView) view.findViewById(R.id.list);
 		list.setOnItemClickListener(this);
 		list.setOnRefreshListener(new OnRefreshListener<ListView>() {

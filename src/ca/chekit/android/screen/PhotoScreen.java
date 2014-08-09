@@ -131,8 +131,10 @@ public class PhotoScreen extends BaseScreen {
 					if (ApiData.METHOD_GET.equalsIgnoreCase(method)) {
 						if (statusCode == HttpStatus.SC_OK) {
 							Bitmap bitmap = (Bitmap) apiResponse.getData();
-							photoView.setImageBitmap(bitmap);
-							loaded = true;
+							if (bitmap != null) {
+								photoView.setImageBitmap(bitmap);
+								loaded = true;
+							}
 						}
 					} else if (ApiData.METHOD_DELETE.equalsIgnoreCase(method)) {
 						if (statusCode == HttpStatus.SC_NO_CONTENT) {

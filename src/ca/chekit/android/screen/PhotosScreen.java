@@ -252,7 +252,7 @@ public class PhotosScreen extends BaseScreen implements OnClickListener, OnItemC
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Photo photo = adapter.getItem(position);
-		if (photo.isThumbnailLoaded()) {
+		if (photo != null && photo.isThumbnailLoaded()) {
 			Intent intent = new Intent(this, PhotoScreen.class);
 			intent.putExtra(ApiData.PARAM_ID, taskId);
 			intent.putExtra(ApiData.PARAM_ID1, photo.getId());
