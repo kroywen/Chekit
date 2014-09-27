@@ -9,8 +9,12 @@ public class Settings {
 	
 	public static final String USERNAME = "username";
 	public static final String PASSWORD = "password";
-	public static final String SESSION_ID = "session_id";
+	public static final String SESSION_ID = "sessionId";
+	public static final String ROLE = "role";
 	public static final String AUTH = "auth";
+	public static final String SELECTED_CONTACT_ID = "selected_contact_id";
+	public static final String CHAT_LAST_UPDATE_TIME = "chat_last_update_time";
+	public static final String CHAT_FILENAMES = "chat_filenames";
 	
 	private SharedPreferences prefs;
 	

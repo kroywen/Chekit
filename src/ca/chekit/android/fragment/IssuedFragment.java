@@ -1,26 +1,21 @@
 package ca.chekit.android.fragment;
 
-import android.view.View;
+import android.widget.BaseAdapter;
 import ca.chekit.android.adapter.IssuedTasksAdapter;
-import ca.chekit.android.adapter.WorkTasksAdapter;
 import ca.chekit.android.model.ScheduledStatus;
 
 public class IssuedFragment extends WorkTasksFragment {
 
 	@Override
-	protected WorkTasksAdapter getAdapter() {
-		return new IssuedTasksAdapter(getActivity(), worktasks);
+	protected BaseAdapter getAdapter() {
+		return new IssuedTasksAdapter(this, worktasks);
 	}
 
 	@Override
-	protected ScheduledStatus getScheduledStatus() {
-		return ScheduledStatus.Assigned;
-	}
-	
-	@Override
-	protected void initializeViews(View view) {
-		super.initializeViews(view);
-		list.setOnItemClickListener(null);
+	protected ScheduledStatus[] getScheduledStatus() {
+		return new ScheduledStatus[] {
+			ScheduledStatus.Assigned
+		};
 	}
 
 }

@@ -30,11 +30,23 @@
             android:textStyle="bold" />
         
         <TextView
-            android:id="@+id/dueView"
+            android:id="@+id/addressView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/taskTitle"
-            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/taskIcon"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/address_icon"
+            android:drawablePadding="5dp"
+            android:textColor="#303030"
+            android:textSize="15sp" />
+        
+        <TextView
+            android:id="@+id/dueView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addressView"
+            android:layout_marginTop="5dp"
             android:drawableLeft="@drawable/due_icon"
             android:drawablePadding="5dp"
             android:textColor="#878b8e"
@@ -89,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:drawableLeft="@drawable/pass_icon"
+                android:drawableLeft="@drawable/accept_icon"
                 android:drawablePadding="10dp"
                 android:textColor="#c0c2c4"
                 android:text="@string/unpass" />
@@ -97,7 +109,7 @@
         </RelativeLayout>
         
         <RelativeLayout 
-            android:id="@+id/acceptBtn"
+            android:id="@+id/removeBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -109,10 +121,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:drawableLeft="@drawable/accept_icon"
+                android:drawableLeft="@drawable/remove_icon"
                 android:drawablePadding="10dp"
                 android:textColor="#c0c2c4"
-                android:text="@string/accept" />
+                android:text="@string/remove" />
             
         </RelativeLayout>
         

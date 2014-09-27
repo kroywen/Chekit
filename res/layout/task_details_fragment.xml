@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="10dp" 
+	    android:padding="1dp"
+	    android:orientation="vertical"
+	    android:background="@drawable/list_item_background">
+	    
+	    <RelativeLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@android:color/white"
+	        android:padding="15dp">
+	    
+		    <TextView
+	            android:id="@+id/taskTitle"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentTop="true"
+	            android:layout_alignParentLeft="true"
+	            android:textSize="18sp"
+	            android:textColor="#303030"
+	            android:textStyle="bold" />
+		    
+		    <TextView
+	            android:id="@+id/addressView1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/taskTitle"
+	            android:layout_alignParentLeft="true"
+	            android:layout_marginTop="10dp"
+	            android:drawableLeft="@drawable/address_icon"
+	            android:drawablePadding="5dp"
+	            android:textColor="#878b8e"
+	            android:textSize="12sp"
+	            android:text="@string/task_address" />
+		    
+		    <TextView
+	            android:id="@+id/addressView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/addressView1"
+	            android:layout_alignParentLeft="true"
+	            android:layout_marginLeft="13dp"
+	            android:textColor="#303030"
+	            android:textSize="14sp" />
+		    
+		    <LinearLayout
+	            android:id="@+id/dueLayout" 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="10dp"
+	            android:layout_below="@id/addressView"
+	            android:layout_alignParentLeft="true"
+	            android:orientation="vertical">
+	        
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:drawableLeft="@drawable/due_icon"
+		            android:drawablePadding="5dp"
+		            android:textColor="#878b8e"
+	            	android:textSize="12sp"
+		            android:text="@string/due" />
+		        
+		        <TextView
+		            android:id="@+id/dueView"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="15dp"
+		            android:textColor="#303030"
+	            	android:textSize="14sp" />
+	        
+	        </LinearLayout>
+	        
+	        <LinearLayout
+	            android:id="@+id/durationLayout" 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="10dp"
+	            android:layout_marginLeft="10dp"
+	            android:layout_below="@id/addressView"
+	            android:layout_toRightOf="@id/dueLayout"
+	            android:orientation="vertical">
+	        
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:drawableLeft="@drawable/duration_icon"
+		            android:drawablePadding="5dp"
+		            android:textColor="#878b8e"
+		            android:textSize="12sp"
+		            android:text="@string/duration" />
+		        
+		        <TextView
+		            android:id="@+id/durationView"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="15dp"
+		            android:textColor="#303030"
+		            android:textSize="14sp" />
+		        
+		    </LinearLayout>
+	    
+	    </RelativeLayout>
+	    
+	    <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="#f0f2f1" />
+	    
+	    <RelativeLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="#f9f9f9">
+	        
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_marginLeft="10dp"
+	            android:layout_centerVertical="true"
+	            android:textColor="#878b8e"
+	            android:textStyle="bold"
+	            android:text="@string/time_remaining" />
+	        
+	        <TextView
+	            android:id="@+id/clearTimeBtn"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentRight="true"
+	            android:padding="10dp"
+	            android:textColor="#b8babb"
+	            android:textStyle="bold"
+	            android:drawableLeft="@drawable/clear_time_icon"
+	            android:drawablePadding="10dp"
+	            android:gravity="center_vertical"
+	            android:text="@string/clear_time" />
+	        
+	    </RelativeLayout>
+	    
+	    <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="#f0f2f1" />
+	    
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:padding="10dp"
+	        android:background="#f9f9f9">
+	        
+	        <LinearLayout 
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:orientation="vertical"
+	            android:gravity="left">
+	            
+	            <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textColor="#878b8e"
+		            android:textSize="12sp"
+		            android:text="@string/days" />
+	            
+	            <Spinner 
+	                android:id="@+id/daysView"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_marginTop="5dp" />
+	            
+	        </LinearLayout>
+	        
+	        <LinearLayout 
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:orientation="vertical"
+	            android:gravity="left">
+	            
+	            <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textColor="#878b8e"
+		            android:textSize="12sp"
+		            android:text="@string/hours" />
+	            
+	            <Spinner 
+	                android:id="@+id/hoursView"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_marginTop="5dp" />
+	            
+	        </LinearLayout>
+	        
+	        <LinearLayout 
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:orientation="vertical"
+	            android:gravity="left">
+	            
+	            <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textColor="#878b8e"
+		            android:textSize="12sp"
+		            android:text="@string/minutes" />
+	            
+	            <Spinner 
+	                android:id="@+id/minutesView"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_marginTop="5dp" />
+	            
+	        </LinearLayout>
+	        
+	    </LinearLayout>
+	    
+	    <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="#f0f2f1" />
+	    
+	    <RelativeLayout
+	        android:id="@+id/taskStatusLayout"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:padding="10dp"
+	        android:background="#f9f9f9">
+	        
+	        <TextView
+	            android:id="@+id/statusTitle"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_alignParentTop="true"
+	            android:layout_marginBottom="10dp"	      
+	            android:textColor="#878b8e"
+	            android:textStyle="bold"
+	            android:text="@string/task_status" />
+	        
+	        <ImageView
+	            android:id="@+id/taskIcon"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+				android:layout_below="@id/statusTitle"      
+	            android:layout_marginRight="15dp" />
+	        
+	        <TextView
+	            android:id="@+id/statusView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_toRightOf="@id/taskIcon"
+	            android:layout_below="@id/statusTitle"
+	            android:layout_marginRight="25dp"
+	            android:textSize="18sp"
+	            android:textColor="#303030"
+	            android:textStyle="bold" />
+	        
+	        <TextView
+	            android:id="@+id/lastUpdateView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/statusView"
+	            android:layout_toRightOf="@id/taskIcon"
+	            android:layout_marginTop="5dp"
+	            android:drawableLeft="@drawable/last_update_icon"
+	            android:drawablePadding="5dp"
+	            android:textColor="#878b8e"
+	            android:textSize="12sp" />
+	        
+	        <ImageView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentRight="true"
+	            android:layout_centerVertical="true"
+	            android:src="@drawable/arrow_right" />
+	        
+	    </RelativeLayout>
+	    
+	</LinearLayout>
+	</ScrollView>
+    
+</LinearLayout>

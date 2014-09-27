@@ -1,10 +1,10 @@
 package ca.chekit.android.screen;
 
 import org.apache.http.HttpStatus;
+import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +14,7 @@ import ca.chekit.android.api.ApiData;
 import ca.chekit.android.api.ApiResponse;
 import ca.chekit.android.api.ApiService;
 import ca.chekit.android.dialog.InputDialog;
+import ca.chekit.android.model.Account;
 import ca.chekit.android.storage.Settings;
 import ca.chekit.android.util.Utilities;
 
@@ -72,16 +73,13 @@ public class LoginScreen extends BaseScreen implements OnClickListener {
 					ApiData.METHOD_POST.equalsIgnoreCase(method))
 				{
 					if (statusCode == HttpStatus.SC_OK) {
-						String sessionId = (String) apiResponse.getData();
-						if (!TextUtils.isEmpty(sessionId)) {
-							if (sessionId.startsWith("\"")) {
-								sessionId = sessionId.substring(1);
-							}
-							if (sessionId.endsWith("\"")) {
-								sessionId = sessionId.substring(0, sessionId.length()-1);
-							}
-							settings.setString(Settings.SESSION_ID, sessionId);
+						if (apiResponse.getData() == null) {
+							return;
 						}
+						JSONObject jsonObj = (JSONObject) apiResponse.getData();
+						settings.setString(Settings.SESSION_ID, jsonObj.optString(Settings.SESSION_ID));
+						settings.setString(Settings.ROLE, jsonObj.optString(Settings.ROLE));
+						
 						String username = usernameView.getText().toString().trim();
 						String password = passwordView.getText().toString().trim();
 						settings.setString(Settings.USERNAME, username);
@@ -91,11 +89,25 @@ public class LoginScreen extends BaseScreen implements OnClickListener {
 						String auth = Base64.encodeToString(data.getBytes(), Base64.NO_WRAP);
 						settings.setString(Settings.AUTH, auth);
 						
-						setResult(RESULT_OK);
-						finish();
+						requestAccountInfo();
 					} else if (statusCode == HttpStatus.SC_NOT_FOUND) {
 						showInfoDialog(R.string.error, R.string.incorrect_user_credentials);
+					} else if (statusCode == HttpStatus.SC_SERVICE_UNAVAILABLE) {
+						showInfoDialog(R.string.error, R.string.service_unavailable);
 					}
+				} else if (ApiData.COMMAND_ACCOUNT.equalsIgnoreCase(command) &&
+					ApiData.METHOD_GET.equalsIgnoreCase(method))
+				{
+					Account account = (Account) apiResponse.getData();
+					Account.setCurrent(this, account);
+					
+					long selectedId = settings.getLong(Settings.SELECTED_CONTACT_ID);
+					if (account.getId() == selectedId) {
+						settings.setLong(Settings.SELECTED_CONTACT_ID, 0);
+					}
+					
+					setResult(RESULT_OK);
+					finish();
 				} else if (ApiData.COMMAND_PASSWORD_RECOVERY.equalsIgnoreCase(command)) {
 					if (statusCode == HttpStatus.SC_NO_CONTENT) {
 						showInfoDialog(R.string.notice, R.string.password_recovery_sent);
@@ -149,5 +161,13 @@ public class LoginScreen extends BaseScreen implements OnClickListener {
 		intent.putExtra(ApiData.PARAM_BODY, body);
 		startService(intent);
 		showProgressDialog(R.string.sending_email);
+	}
+	
+	private void requestAccountInfo() {
+		Intent intent = new Intent(this, ApiService.class);
+		intent.setAction(ApiData.COMMAND_ACCOUNT);
+		intent.putExtra(ApiData.PARAM_METHOD, ApiData.METHOD_GET);
+		startService(intent);
+		showProgressDialog(R.string.loading_account_info);
 	}
 }

@@ -38,13 +38,31 @@
         android:layout_height="1dp"
         android:background="#e6eae8" />
     
-    <EditText 
-        android:id="@+id/noteView"
+    <RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="15dp"
-        android:gravity="top|left"
-        android:background="@drawable/edittext_background" />
+        android:layout_weight="1">
+    
+	    <EditText 
+	        android:id="@+id/editNoteView"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:gravity="top|left"
+	        android:padding="15dp"
+	        android:textColor="#303030"
+	        android:textSize="16sp"
+	        android:background="@drawable/edittext_background" />
+	    
+	    <TextView
+	        android:id="@+id/noteView"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:gravity="top|left"
+	        android:padding="15dp"
+	        android:textColor="#303030"
+	        android:textSize="16sp"
+	        android:background="@drawable/edittext_background" />
+    
+    </RelativeLayout>
 
 </LinearLayout>

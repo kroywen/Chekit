@@ -4,13 +4,14 @@ import java.io.InputStream;
 
 import org.json.JSONObject;
 
+import android.content.Context;
 import ca.chekit.android.model.WorkTask;
 import ca.chekit.android.util.Utilities;
 
 public class WorkTaskParser extends ApiParser {
 
 	@Override
-	public Object readData(InputStream is) {
+	public Object readData(Context context, InputStream is) {
 		WorkTask task = null;
 		try {
 			String json = Utilities.streamToString(is);

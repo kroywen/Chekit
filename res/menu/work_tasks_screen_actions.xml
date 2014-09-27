@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item
+        android:id="@+id/action_chat"
+        android:title="@string/chat"
+        android:actionLayout="@layout/chat_action_layout"
+        android:showAsAction="always" />
+    
+    <item
+        android:id="@+id/action_map"
+        android:title="@string/map"
+        android:icon="@drawable/ic_menu_map"
+        android:showAsAction="always" />
+    
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_menu_settings"
+        android:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_logout"
         android:title="@string/logout"
         android:icon="@drawable/ic_menu_logout"
-        android:showAsAction="always" />
+        android:showAsAction="ifRoom" />
 
 </menu>

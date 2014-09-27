@@ -36,7 +36,7 @@ public class PhotoScreen extends BaseScreen {
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setIcon(R.drawable.photos_icon_big);
+		actionBar.setIcon(R.drawable.photos_icon_title);
 		
 		if (Utilities.isConnectionAvailable(this)) {
 			loaded = false;
@@ -101,7 +101,7 @@ public class PhotoScreen extends BaseScreen {
 	
 	private void requestPhoto() {
 		Intent intent = new Intent(this, ApiService.class);
-		intent.setAction(ApiData.COMMAND_PHOTO);
+		intent.setAction(ApiData.COMMAND_ATTACHMENT);
 		intent.putExtra(ApiData.PARAM_METHOD, ApiData.METHOD_GET);
 		intent.putExtra(ApiData.PARAM_ID, taskId);
 		intent.putExtra(ApiData.PARAM_ID1, photoId);
@@ -111,7 +111,7 @@ public class PhotoScreen extends BaseScreen {
 	
 	private void requestDeletePhoto() {
 		Intent intent = new Intent(this, ApiService.class);
-		intent.setAction(ApiData.COMMAND_PHOTO);
+		intent.setAction(ApiData.COMMAND_ATTACHMENT);
 		intent.putExtra(ApiData.PARAM_METHOD, ApiData.METHOD_DELETE);
 		intent.putExtra(ApiData.PARAM_ID, taskId);
 		intent.putExtra(ApiData.PARAM_ID1, photoId);
@@ -127,7 +127,7 @@ public class PhotoScreen extends BaseScreen {
 				String method = apiResponse.getMethod();
 				String command = apiResponse.getRequestName();
 				int statusCode = apiResponse.getStatus();
-				if (ApiData.COMMAND_PHOTO.equalsIgnoreCase(command)) {
+				if (ApiData.COMMAND_ATTACHMENT.equalsIgnoreCase(command)) {
 					if (ApiData.METHOD_GET.equalsIgnoreCase(method)) {
 						if (statusCode == HttpStatus.SC_OK) {
 							Bitmap bitmap = (Bitmap) apiResponse.getData();

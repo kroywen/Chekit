@@ -15,9 +15,131 @@
     android:background="@drawable/list_item_background">
     
     <RelativeLayout 
+        android:id="@+id/taskDetailsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
+        
+        <TextView
+            android:id="@+id/taskTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="18sp"
+            android:textColor="#303030"
+            android:textStyle="bold" />
+        
+        <TextView
+            android:id="@+id/addressView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/taskTitle"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/address_icon"
+            android:drawablePadding="5dp"
+            android:textColor="#303030"
+            android:textSize="15sp" />
+        
+        <LinearLayout
+            android:id="@+id/dueLayout" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/addressView"
+            android:orientation="vertical">
+        
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:drawableLeft="@drawable/due_icon"
+	            android:drawablePadding="5dp"
+	            android:textColor="#878b8e"
+	            android:textSize="10sp"
+	            android:text="@string/due" />
+	        
+	        <TextView
+	            android:id="@+id/dueView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="15dp"
+	            android:textColor="#878b8e"
+	            android:textSize="10sp" />
+        
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/durationLayout" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/addressView"
+            android:layout_toRightOf="@id/dueLayout"
+            android:orientation="vertical">
+        
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:drawableLeft="@drawable/duration_icon"
+	            android:drawablePadding="5dp"
+	            android:textColor="#878b8e"
+	            android:textSize="10sp"
+	            android:text="@string/duration" />
+	        
+	        <TextView
+	            android:id="@+id/durationView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="15dp"
+	            android:textColor="#878b8e"
+	            android:textSize="10sp" />
+	        
+	    </LinearLayout>
+	    
+        <LinearLayout
+            android:id="@+id/remainingTimeLayout" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/addressView"
+            android:layout_toRightOf="@id/durationLayout"
+            android:orientation="vertical">
+        
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:drawableLeft="@drawable/remaining_time_icon"
+	            android:drawablePadding="5dp"
+	            android:textColor="#878b8e"
+	            android:textSize="10sp"
+	            android:text="@string/remaining_time" />
+	        
+	        <TextView
+	            android:id="@+id/remainingTimeView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="12dp"
+	            android:textColor="#878b8e"
+	            android:textSize="10sp" />
+	        
+	    </LinearLayout>
+        
+    </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e6eae8" />
+    
+    <RelativeLayout 
+        android:id="@+id/taskStatusLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="#f9f9f9">
         
         <ImageView
             android:id="@+id/taskIcon"
@@ -28,102 +150,29 @@
             android:layout_marginRight="15dp" />
         
         <TextView
-            android:id="@+id/taskTitle"
+            android:id="@+id/statusView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@id/taskIcon"
+            android:layout_marginTop="5dp"
             android:textSize="18sp"
             android:textColor="#303030"
             android:textStyle="bold" />
         
         <TextView
-            android:id="@+id/dueView"
+            android:id="@+id/lastUpdateView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/taskTitle"
+            android:layout_below="@id/statusView"
             android:layout_toRightOf="@id/taskIcon"
-            android:layout_marginTop="15dp"
-            android:drawableLeft="@drawable/due_icon"
-            android:drawablePadding="5dp"
-            android:textColor="#878b8e"
-            android:textSize="10sp" />
-        
-        <TextView
-            android:id="@+id/durationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/dueView"
-            android:layout_alignBaseline="@id/dueView"
-            android:layout_marginLeft="10dp"
-            android:drawableLeft="@drawable/duration_icon"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/last_update_icon"
             android:drawablePadding="5dp"
             android:textColor="#878b8e"
             android:textSize="10sp" />
         
     </RelativeLayout>
-    
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e6eae8" />
-    
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:background="#f9f9f9">
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:drawableLeft="@drawable/photos_icon"
-            android:drawablePadding="5dp"
-            android:textColor="#878b8e"
-            android:gravity="center"
-            android:text="@string/photos" />
-        
-        <TextView 
-            android:id="@+id/photosView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#1abf75" />
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="10dp"
-            android:drawableLeft="@drawable/notes_icon"
-            android:drawablePadding="5dp"
-            android:textColor="#878b8e"
-            android:gravity="center"
-            android:text="@string/notes" />
-        
-        <TextView 
-            android:id="@+id/notesView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#1abf75" />
-        
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-        
-        <TextView 
-            android:id="@+id/mapBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/map_icon"
-            android:drawablePadding="5dp"
-            android:textColor="#878b8e"
-            android:gravity="center"
-            android:text="@string/map" />
-        
-    </LinearLayout>
 
 </LinearLayout>
 </FrameLayout>

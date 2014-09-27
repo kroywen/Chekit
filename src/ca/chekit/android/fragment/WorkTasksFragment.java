@@ -1,8 +1,5 @@
 package ca.chekit.android.fragment;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -13,38 +10,38 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.RadioGroup;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import ca.chekit.android.R;
-import ca.chekit.android.adapter.WorkTasksAdapter;
 import ca.chekit.android.api.ApiData;
 import ca.chekit.android.model.ScheduledStatus;
 import ca.chekit.android.model.WorkTask;
-import ca.chekit.android.screen.TaskScreen;
+import ca.chekit.android.screen.BaseScreen;
+import ca.chekit.android.screen.TaskDetailsScreen;
+import ca.chekit.android.screen.TaskStatusScreen;
 import ca.chekit.android.screen.WorkTasksScreen;
+import ca.chekit.android.storage.Settings;
 import ca.chekit.android.util.Utilities;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
-public abstract class WorkTasksFragment extends Fragment implements OnItemClickListener, OnCheckedChangeListener {
+public abstract class WorkTasksFragment extends Fragment implements OnCheckedChangeListener {
 	
-	public static final int VIEW_TASK_REQUEST_CODE = 0;
-	
-	public static final int SORT_BY_DUE_DATE = 0;
-	public static final int GROUP_ON_DIVISION = 1;
-	public static final int GROUP_ON_STATUS = 2;
+	public static final int VIEW_TASK_DETAILS_REQUEST_CODE = 0;
+	public static final int VIEW_TASK_STATUS_REQUEST_CODE = 1;
 	
 	protected View empty;
 	protected PullToRefreshListView list;
 	private RadioGroup sortGroup;
+	
 	protected List<WorkTask> worktasks;
-	protected WorkTasksAdapter adapter;
-	protected int sortOrder;
+	protected BaseAdapter adapter;
+	protected int groupOrder;
+	protected Settings settings;
 	
 	@SuppressLint("InflateParams")
 	@Override
@@ -55,9 +52,14 @@ public abstract class WorkTasksFragment extends Fragment implements OnItemClickL
 		return view;
 	}
 	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		settings = new Settings(getActivity());
+	}
+	
 	protected void initializeViews(View view) {
 		list = (PullToRefreshListView) view.findViewById(R.id.list);
-		list.setOnItemClickListener(this);
 		list.setOnRefreshListener(new OnRefreshListener<ListView>() {
 			@Override
 			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -77,8 +79,7 @@ public abstract class WorkTasksFragment extends Fragment implements OnItemClickL
 	
 	public void updateViews() {
 		WorkTasksScreen screen = (WorkTasksScreen) getActivity();
-		worktasks = filterWorktasks(screen.getWorktasks(), getScheduledStatus());
-		sortWorktasks();
+		worktasks = Utilities.filterWorktasks(screen.getWorktasks(), getScheduledStatus());
 		if (Utilities.isEmpty(worktasks)) {
 			list.setVisibility(View.INVISIBLE);
 			empty.setVisibility(View.VISIBLE);
@@ -92,77 +93,46 @@ public abstract class WorkTasksFragment extends Fragment implements OnItemClickL
 		}
 	}
 	
-	private List<WorkTask> filterWorktasks(List<WorkTask> worktasks, ScheduledStatus status) {
-		if (Utilities.isEmpty(worktasks)) {
-			return null;
-		}
-		List<WorkTask> filtered = new ArrayList<WorkTask>();
-		for (WorkTask task : worktasks) {
-			if (task.getScheduledStatus() == status) {
-				filtered.add(task);
-			}
-		}
-		return filtered;
+	protected abstract BaseAdapter getAdapter();
+	
+	protected abstract ScheduledStatus[] getScheduledStatus();
+	
+	public void onTaskDetailsClicked(WorkTask task) {
+		Intent intent = new Intent(getActivity(), TaskDetailsScreen.class);
+		intent.putExtra(ApiData.PARAM_ID, task.getId());
+		intent.putExtra(ApiData.PARAM_DESCRIPTION, task.getDescription());
+		startActivityForResult(intent, WorkTasksFragment.VIEW_TASK_DETAILS_REQUEST_CODE);
 	}
 	
-	protected abstract WorkTasksAdapter getAdapter();
-	
-	protected abstract ScheduledStatus getScheduledStatus();
-	
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		WorkTask task = adapter.getItem(position - 1);
-		
-		Intent intent = new Intent(getActivity(), TaskScreen.class);
+	public void onTaskStatusClicked(WorkTask task) {
+		Intent intent = new Intent(getActivity(), TaskStatusScreen.class);
 		intent.putExtra(ApiData.PARAM_ID, task.getId());
-		startActivityForResult(intent, VIEW_TASK_REQUEST_CODE);
+		startActivityForResult(intent, WorkTasksFragment.VIEW_TASK_STATUS_REQUEST_CODE);
 	}
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == VIEW_TASK_REQUEST_CODE) {
-			if (resultCode == Activity.RESULT_OK) {
-				if (Utilities.isConnectionAvailable(getActivity())) {
-					((WorkTasksScreen) getActivity()).refreshWorkTasks(true);
-				}
-			}
+		if (requestCode == VIEW_TASK_DETAILS_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+			((WorkTasksScreen) getActivity()).refreshWorkTasks(true);
+		} else if (requestCode == VIEW_TASK_STATUS_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+			((BaseScreen) getActivity()).showChangeTaskStatusDialog(data);
 		}
-	}
-	
-	protected void sortWorktasks() {
-		if (Utilities.isEmpty(worktasks)) {
-			return;
-		}
-		Collections.sort(worktasks, getSortComparator());
 	}
 	
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		switch (checkedId) {
 		case R.id.groupByDueDateBtn:
-			sortOrder = SORT_BY_DUE_DATE;
+			groupOrder = WorkTask.GROUP_BY_DUE_DATE;
 			break;
 		case R.id.groupByDivisionBtn:
-			sortOrder = GROUP_ON_DIVISION;
+			groupOrder = WorkTask.GROUP_ON_DIVISION;
 			break;
 		case R.id.groupByStatusBtn:
-			sortOrder = GROUP_ON_STATUS;
+			groupOrder = WorkTask.GROUP_ON_STATUS;
 			break;
 		}
 		updateViews();
-	}
-	
-	private Comparator<WorkTask> getSortComparator() {
-		switch (sortOrder) {
-		case 0:
-			return WorkTask.DueDateComparator;
-		case 1:
-			return WorkTask.DivisionComparator;
-		case 2:
-			return WorkTask.StatusComparator;
-		default:
-			return null;
-		}
 	}
 
 }

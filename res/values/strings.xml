@@ -6,12 +6,14 @@
     <string name="enter_password">Enter password</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
+    <string name="settings">Settings</string>
     <string name="work_tasks">Work Tasks</string>
     <string name="issued">Issued</string>
     <string name="accepted">Accepted</string>
     <string name="passed">Passed</string>
     <string name="due_pattern">Due: %1$s</string>
     <string name="duration_pattern">Duration: %1$s</string>
+    <string name="last_update_pattern">Last update: %1$s</string>
     <string name="accept">Accept</string>
     <string name="pass">Pass</string>
     <string name="unpass">Unpass</string>
@@ -23,11 +25,13 @@
     <string name="accept_task">Would like to accept\nthis task?</string>
     <string name="pass_task">Do you want to pass\nthis task?</string>
     <string name="unpass_task">Would like to unpass\nthis task?</string>
+    <string name="remove_task_pattern">Do you really want to remove %1$s?</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="incorrect_user_credentials">User with this login credentils does not exists.</string>
     <string name="task_screen">Task screen</string>
     <string name="task_status">Task status:</string>
+    <string name="task_status_2">Task status</string>
     <string name="update_status">Set status to \"%1$s\"?</string>
     <string name="confirm_logout">Log out?</string>
     <string name="task_location">Task Location</string>
@@ -47,10 +51,33 @@
     <string name="sort_by_due_date">Sort by Due Date</string>
     <string name="group_on_division">Group on Division</string>
     <string name="group_on_status">Group on Status</string>
+    <string name="remove">Remove</string>
+    <string name="due">Due:</string>
+    <string name="duration">Duration:</string>
+    <string name="remaining_time">Remaining time:</string>
+    <string name="task_address">Task address</string>
+    <string name="time_remaining">Time Remaining</string>
+    <string name="clear_time">Clear time</string>        
+    <string name="days">Days</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="note">Note</string>
+    <string name="no_updates">No Updates</string>
+    <string name="change_password">Change password</string>
+    <string name="about">About</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New Password</string>
+    <string name="verify_new_password">Verify new password</string>
+    <string name="chat">Chat</string>
+    <string name="enter_message">Enter message &#8230;</string>
+    <string name="contacts">Contacts</string>
+    <string name="user_list">User List</string>
+    <string name="all_tasks">All Tasks</string>
     
     <string name="logging_in">Log in, please wait &#8230;</string>
     <string name="logging_out">Log out, please wait &#8230;</string>
     <string name="loading_tasks">Loading tasks, please wait</string>
+    <string name="updating_task">Updating task, please wait &#8230;</string>
     <string name="information">Information</string>
     <string name="error">Error</string>
     <string name="no_connection">Please make sure that connection is active</string>
@@ -75,24 +102,36 @@
     <string name="confirm_delete_photo">Are you sure you want to delete this photo?</string>
     <string name="uploading_photo">Uploading, please wait &#8230;</string>
     <string name="internal_server_error">Internal Server Error</string>
+    <string name="capture">Capture</string>
+    <string name="select">Select</string>
+    <string name="removing_task">Removing task, please wait &#8230;</string>
+    <string name="loading_status">Loading status, please wait &#8230;</string>
+    <string name="loading_files">Loading files, please wait &#8230;</string>
+    <string name="no_files">No files</string>
+    <string name="downloading">Downloading &#8230;</string>
+    <string name="loading_account_info">Loading account info, please wait &#8230;</string>
+    <string name="loading_divisions">Loading divisions list, please wait &#8230;</string>
+    <string name="confirm_clear_remaining_time">You really wanna clear remaining time?</string>
+    <string name="please_fill_all_fields">Please fill all fields</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="changing_password">Changing password, please wait &#8230;</string>
+    <string name="old_password_is_wrong">Old password is wrong</string>
+    <string name="password_changed">You successfully changed your password</string>
+    <string name="about_text">Latest version: %1$s\n3rd party software:\nPullToRefreshListView, TouchImageView, AndroidFbSlideoutNavigation\n\nChekit&#8482; is an application provided\nand owned by CHEKIT WEB BASED\nSTATUS MONITOR LTD</string>
+    <string name="select_contact">Select contact</string>
+    <string name="loading_contacts">Loading contacts, please wait &#8230;</string>
+    <string name="loading_messages">Loading messages, please wait &#8230;</string>
+    <string name="sending_message">Sending message, please wait &#8230;</string>
+    <string name="service_unavailable">Service unavailable</string>
+    <string name="no_activity_found">No activity found to open this file</string>
     
     <string name="pull_to_refresh_pull_label">Pull down for update</string>
     <string name="pull_to_refresh_release_label">Release for update</string>
     <string name="pull_to_refresh_refreshing_label">Update task feed &#8230;</string>
     
-    <string-array name="status_names">
-        <item>On Route</item>
-        <item>On Site</item>
-        <item>Verify Site</item>
-        <item>Task Start</item>
-        <item>Task Active</item>
-        <item>Task Complete</item>
-        <item>Task Problems Delayed</item>
-        <item>Task Incomplete Leave Site</item>
-        <item>Task Safety Issues</item>
-        <item>Task Problems Stop</item>
-        <item>Task Safety Danger</item>
-        <item>Task Problems Leave Site</item>
+    <string-array name="settings_entries">
+        <item>@string/change_password</item>
+        <item>@string/about</item>
     </string-array>
 
 </resources>

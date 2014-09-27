@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import ca.chekit.android.R;
@@ -21,13 +22,18 @@ import ca.chekit.android.util.Utilities;
 
 public class EditNoteScreen extends BaseScreen {
 	
+	public static final int MODE_EDIT = 0;
+	public static final int MODE_VIEW = 1;
+	
 	private TextView dateView;
 	private TextView timeView;
-	private EditText noteView;
+	private EditText editNoteView;
+	private TextView noteView;
 	
 	private long taskId;
 	private long noteId;
 	private Note note;
+	private int mode;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +44,8 @@ public class EditNoteScreen extends BaseScreen {
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setIcon(R.drawable.notes_icon_big);
+		actionBar.setIcon(R.drawable.notes_icon_title);
+		actionBar.setTitle(mode == MODE_EDIT ? R.string.edit_notes : R.string.note);
 		
 		if (Utilities.isConnectionAvailable(this)) {
 			requestNote();
@@ -49,8 +56,10 @@ public class EditNoteScreen extends BaseScreen {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.new_notes_screen_actions, menu);
+		if (mode == MODE_EDIT) {
+			MenuInflater inflater = getMenuInflater();
+			inflater.inflate(R.menu.new_notes_screen_actions, menu);
+		}
 	    return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -78,13 +87,19 @@ public class EditNoteScreen extends BaseScreen {
 		if (intent != null) {
 			taskId = intent.getLongExtra(ApiData.PARAM_ID, 0);
 			noteId = intent.getLongExtra(ApiData.PARAM_ID1, 0);
+			mode = intent.getIntExtra("mode", MODE_EDIT);
 		}
 	}
 	
 	private void initializeViews() {
 		dateView = (TextView) findViewById(R.id.dateView);
 		timeView = (TextView) findViewById(R.id.timeView);
-		noteView = (EditText) findViewById(R.id.noteView);
+		
+		editNoteView = (EditText) findViewById(R.id.editNoteView);
+		editNoteView.setVisibility(mode == MODE_EDIT ? View.VISIBLE : View.INVISIBLE);
+		
+		noteView = (TextView) findViewById(R.id.noteView);
+		noteView.setVisibility(mode == MODE_EDIT ? View.INVISIBLE : View.VISIBLE);
 	}
 	
 	private void requestNote() {
@@ -99,12 +114,17 @@ public class EditNoteScreen extends BaseScreen {
 	
 	private void updateViews() {
 		if (note != null) {
-			dateView.setText(Utilities.convertDate(note.getDateChanged(), Utilities.yyyy_MM_ddTHH_mm_ss, Utilities.yyyy_MM_dd));
-			timeView.setText(Utilities.convertDate(note.getDateChanged(), Utilities.yyyy_MM_ddTHH_mm_ss, Utilities.hh_mm_a));
-			noteView.setText(note.getNote());
-			if (!TextUtils.isEmpty(note.getNote())) {
-				noteView.setSelection(note.getNote().length());
+			dateView.setText(getString(R.string.due_pattern, Utilities.convertDate(note.getDateChanged(), Utilities.yyyy_MM_ddTHH_mm_ss, Utilities.yyyy_MM_dd)));
+			timeView.setText(getString(R.string.duration_pattern, Utilities.convertDate(note.getDateChanged(), Utilities.yyyy_MM_ddTHH_mm_ss, Utilities.hh_mm_a)));
+			if (mode == MODE_EDIT) {
+				editNoteView.setText(note.getNote());
+				if (!TextUtils.isEmpty(note.getNote())) {
+					editNoteView.setSelection(note.getNote().length());
+				}
+			} else {
+				noteView.setText(note.getNote());
 			}
+			
 		}
 	}
 	
@@ -142,7 +162,7 @@ public class EditNoteScreen extends BaseScreen {
 			intent.putExtra(ApiData.PARAM_ID1, noteId);
 			
 			JSONObject obj = new JSONObject();
-			obj.put(Note.NOTE, noteView.getText().toString().trim());
+			obj.put(Note.NOTE, editNoteView.getText().toString().trim());
 			intent.putExtra(ApiData.PARAM_BODY, obj.toString());
 			
 			startService(intent);

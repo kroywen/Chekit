@@ -2,6 +2,7 @@ package ca.chekit.android.adapter;
 
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,18 +12,18 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import ca.chekit.android.R;
 import ca.chekit.android.api.ApiData;
+import ca.chekit.android.fragment.TaskNotesFragment;
 import ca.chekit.android.model.Note;
 import ca.chekit.android.screen.EditNoteScreen;
-import ca.chekit.android.screen.NotesScreen;
 import ca.chekit.android.util.Utilities;
 
 public class NotesAdapter extends BaseAdapter {
 	
-	private Context context;
+	private TaskNotesFragment fragment;
 	private List<Note> notes;
 	
-	public NotesAdapter(Context context, List<Note> notes) {
-		this.context = context;
+	public NotesAdapter(TaskNotesFragment fragment, List<Note> notes) {
+		this.fragment = fragment;
 		this.notes = notes;
 	}
 
@@ -41,10 +42,11 @@ public class NotesAdapter extends BaseAdapter {
 		return notes.get(position).getId();
 	}
 
+	@SuppressLint("InflateParams")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
-			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater inflater = (LayoutInflater) fragment.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = inflater.inflate(R.layout.note_list_item, null);
 		}
 		
@@ -63,10 +65,11 @@ public class NotesAdapter extends BaseAdapter {
 		editNoteBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(context, EditNoteScreen.class);
+				Intent intent = new Intent(fragment.getActivity(), EditNoteScreen.class);
 				intent.putExtra(ApiData.PARAM_ID, note.getWorkTaskId());
 				intent.putExtra(ApiData.PARAM_ID1, note.getId());				
-				((NotesScreen) context).startActivityForResult(intent, NotesScreen.EDIT_NOTE_REQUEST_CODE);
+				intent.putExtra("mode", EditNoteScreen.MODE_EDIT);
+				fragment.startActivityForResult(intent, TaskNotesFragment.EDIT_NOTE_REQUEST_CODE);
 			}
 		});
 		
@@ -74,7 +77,7 @@ public class NotesAdapter extends BaseAdapter {
 		deleteNoteBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((NotesScreen) context).deleteNote(note);
+				fragment.deleteTaskNote(note);
 			}
 		});
 		

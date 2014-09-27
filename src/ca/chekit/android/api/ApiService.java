@@ -60,8 +60,9 @@ public class ApiService extends IntentService {
 			System.getProperty("http.agent"), this);
 		HttpRequestBase request = getHttpRequest(method);
 		
-		request.addHeader("Accept", "application/json");
 		request.addHeader("Content-Type", "application/json");
+		request.addHeader("Accept", "application/json");
+		
 		if (!(command.equalsIgnoreCase(ApiData.COMMAND_LOGIN) && method.equalsIgnoreCase(ApiData.METHOD_POST))) {
 			Settings settings = new Settings(this);
 			String auth = settings.getString(Settings.AUTH);
@@ -81,14 +82,18 @@ public class ApiService extends IntentService {
 				ApiData.COMMAND_WORKTASK_STATUS.equalsIgnoreCase(command) ||
 				ApiData.COMMAND_NOTES.equalsIgnoreCase(command) ||
 				ApiData.COMMAND_NOTE.equalsIgnoreCase(command) ||
-				ApiData.COMMAND_PASSWORD_RECOVERY.equalsIgnoreCase(command))
+				ApiData.COMMAND_WORKTASK.equalsIgnoreCase(command) ||
+				ApiData.COMMAND_PASSWORD_RECOVERY.equalsIgnoreCase(command) ||
+				ApiData.COMMAND_CHANGE_PASSWORD.equalsIgnoreCase(command) ||
+				ApiData.COMMAND_CHAT.equalsIgnoreCase(command) || 
+				ApiData.COMMAND_PUSH_SERVICE.equalsIgnoreCase(command)) 
 			{
 				try {
 					r.setEntity(new StringEntity((String) body, "UTF-8"));
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
-			} else if (ApiData.COMMAND_PHOTOS.equalsIgnoreCase(command)) {
+			} else if (ApiData.COMMAND_ATTACHMENTS.equalsIgnoreCase(command)) {
 				r.setEntity(new ByteArrayEntity((byte[]) body));
 			}
 		}
@@ -101,7 +106,7 @@ public class ApiService extends IntentService {
 				InputStream is = entity.getContent();
 				ApiParser parser = ParserFactory.getParser(command, method);
 				if (parser != null) {
-					parser.parse(is);
+					parser.parse(this, is);
 					ApiResponse apiResponse = parser.getApiResponse();
 					apiResponse.setStatus(response.getStatusLine().getStatusCode());
 					apiResponse.setMethod(method);
@@ -148,7 +153,18 @@ public class ApiService extends IntentService {
 	}
 	
 	private String createURL(String command, Bundle params) {
-		Uri.Builder uriBuilder = Uri.parse(ApiData.BASE_URL + command).buildUpon();
+		String url = ApiData.BASE_URL + command;
+		if (params.containsKey(ApiData.PARAM_ID)) {
+			long id = params.getLong(ApiData.PARAM_ID);
+			if (params.containsKey(ApiData.PARAM_ID1)) {
+				long id1 = params.getLong(ApiData.PARAM_ID1);
+				url = String.format(url, id, id1);
+			} else {
+				url = String.format(url, id);
+			}			
+		}
+		
+		Uri.Builder uriBuilder = Uri.parse(url).buildUpon();
 		if (params != null) {
 			Set<String> keys = params.keySet();
 			if (keys != null && !keys.isEmpty()) {
@@ -168,15 +184,6 @@ public class ApiService extends IntentService {
 			}
 		}
 		String result = uriBuilder.build().toString();
-		if (params.containsKey(ApiData.PARAM_ID)) {
-			long id = params.getLong(ApiData.PARAM_ID);
-			if (params.containsKey(ApiData.PARAM_ID1)) {
-				long id1 = params.getLong(ApiData.PARAM_ID1);
-				result = String.format(result, id, id1);
-			} else {
-				result = String.format(result, id);
-			}			
-		}
 		return result;
 	}
 

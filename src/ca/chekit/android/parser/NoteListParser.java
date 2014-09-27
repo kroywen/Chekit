@@ -7,13 +7,14 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Context;
 import ca.chekit.android.model.Note;
 import ca.chekit.android.util.Utilities;
 
 public class NoteListParser extends ApiParser {
 
 	@Override
-	public Object readData(InputStream is) {
+	public Object readData(Context context, InputStream is) {
 		List<Note> notes = null;
 		try {
 			String json = Utilities.streamToString(is);

@@ -2,6 +2,7 @@ package ca.chekit.android.parser;
 
 import java.io.InputStream;
 
+import android.content.Context;
 import ca.chekit.android.api.ApiResponse;
 
 public abstract class ApiParser {
@@ -20,11 +21,11 @@ public abstract class ApiParser {
 		this.apiResponse = apiResponse;
 	}
 	
-	public void parse(InputStream is) {
-		Object data = readData(is);
+	public void parse(Context context, InputStream is) {
+		Object data = readData(context, is);
 		apiResponse.setData(data);
 	}
 	
-	public abstract Object readData(InputStream is);
+	public abstract Object readData(Context context, InputStream is);
 
 }

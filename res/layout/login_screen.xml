@@ -22,10 +22,11 @@
         android:layout_below="@id/logo"
         android:hint="@string/enter_login"
         android:textColorHint="#d7cdcd"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:maxLines="1"
         android:textColor="#303030"
-        android:background="@drawable/edittext_background" />
+        android:background="@drawable/edittext_background"
+        android:text="sukovMax@gmail.com" />
     
     <EditText
         android:id="@+id/passwordView"
@@ -40,7 +41,8 @@
         android:inputType="textPassword"
         android:maxLines="1"
         android:textColor="#303030"
-        android:background="@drawable/edittext_background" />
+        android:background="@drawable/edittext_background"
+        android:text="sma26071987" />
     
     <RelativeLayout 
         android:id="@+id/loginBtn"

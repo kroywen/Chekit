@@ -38,16 +38,29 @@
             android:textStyle="bold" />
         
         <TextView
-            android:id="@+id/dueView"
+            android:id="@+id/addressView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/taskTitle"
             android:layout_toRightOf="@id/taskIcon"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/address_icon"
+            android:drawablePadding="5dp"
+            android:textColor="#303030"
+            android:textSize="15sp" />
+        
+        <TextView
+            android:id="@+id/dueView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addressView"
+            android:layout_toRightOf="@id/taskIcon"
+            android:layout_marginTop="5dp"
             android:drawableLeft="@drawable/due_icon"
             android:drawablePadding="5dp"
             android:textColor="#878b8e"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:text="@string/due" />
         
         <TextView
             android:id="@+id/durationView"
@@ -108,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:drawableLeft="@drawable/pass_icon"
+                android:drawableLeft="@drawable/remove_icon"
                 android:drawablePadding="10dp"
                 android:textColor="#c0c2c4"
                 android:text="@string/pass" />

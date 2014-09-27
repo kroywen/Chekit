@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    
+	<LinearLayout 
+	    android:layout_width="0dp"
+	    android:layout_height="match_parent"
+	    android:layout_weight="1"
+	    android:orientation="vertical" 
+	    android:background="#064c27">
+	    
+	    <TextView
+	        android:id="@+id/contactsHeader"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:textColor="@android:color/white"
+	        android:textSize="18sp"
+	        android:background="#054625"
+	        android:text="@string/user_list" />
+	    
+	    <ListView
+	        android:id="@+id/contactsList"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:cacheColorHint="@android:color/transparent"
+	        android:dividerHeight="1px"
+	        android:divider="#054625" />
+	
+	</LinearLayout>
+	
+	<View 
+	    android:layout_width="50dip"
+	    android:layout_height="match_parent"
+	    android:background="#344c6b" />
+
+</LinearLayout>

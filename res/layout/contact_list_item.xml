@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingLeft="5dp"
+    android:paddingTop="5dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="15dp">
+    
+    <FrameLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    
+	    <ImageView
+	        android:id="@+id/icon"
+	        android:layout_width="50dp"
+	        android:layout_height="50dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginTop="10dp"
+	        android:src="@drawable/contact_icon_default" />
+	    
+	    <TextView
+	        android:id="@+id/badgeIcon"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:minWidth="20dp"
+	        android:minHeight="20dp"
+	        android:background="@drawable/unread_badge"
+	        android:textColor="@android:color/white"
+	        android:textSize="12sp"
+	        android:gravity="center"
+	        android:layout_gravity="left|top" />
+    
+    </FrameLayout>
+    
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="17sp"
+        android:textColor="#1abf75"
+        android:gravity="left|center_vertical" />
+    
+    <ImageView
+        android:id="@+id/selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/selected_icon" />
+
+</LinearLayout>

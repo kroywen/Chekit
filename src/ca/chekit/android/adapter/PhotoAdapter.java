@@ -2,6 +2,7 @@ package ca.chekit.android.adapter;
 
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +11,16 @@ import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import ca.chekit.android.R;
-import ca.chekit.android.model.Photo;
+import ca.chekit.android.model.Attachment;
 import ca.chekit.android.util.Utilities;
 
 public class PhotoAdapter extends BaseAdapter {
 	
 	private Context context;
-	private List<Photo> photos;
+	private List<Attachment> photos;
 	private int size;
 	
-	public PhotoAdapter(Context context, List<Photo> photos, int gridWidth) {
+	public PhotoAdapter(Context context, List<Attachment> photos, int gridWidth) {
 		this.context = context;
 		this.photos = photos;
 		calculatePhotoSize(gridWidth);
@@ -31,7 +32,7 @@ public class PhotoAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public Photo getItem(int position) {
+	public Attachment getItem(int position) {
 		return photos.get(position);
 	}
 
@@ -40,6 +41,7 @@ public class PhotoAdapter extends BaseAdapter {
 		return photos.get(position).getId();
 	}
 
+	@SuppressLint("InflateParams")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
@@ -51,8 +53,8 @@ public class PhotoAdapter extends BaseAdapter {
 		ImageView emptyView = (ImageView) convertView.findViewById(R.id.emptyView);
 		ImageView photoView = (ImageView) convertView.findViewById(R.id.photoView);
 		
-		Photo photo = getItem(position);
-		photo.displayImage(context, photoView, emptyView); // TODO
+		Attachment photo = getItem(position);
+		photo.displayImage(context, photoView, emptyView);
 		
 		return convertView;
 	}

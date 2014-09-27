@@ -8,11 +8,17 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
     
+    <permission android:name="ca.chekit.android.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<uses-permission android:name="ca.chekit.android.permission.C2D_MESSAGE" />
   	
   	<uses-feature
     	android:glEsVersion="0x00020000"
@@ -47,18 +53,18 @@
             android:screenOrientation="portrait" />
         
         <activity
-            android:name=".screen.TaskScreen"
+            android:name=".screen.TaskDetailsScreen"
+            android:label="@string/task_screen"
+            android:screenOrientation="portrait" />
+        
+        <activity
+            android:name=".screen.TaskStatusScreen"
             android:label="@string/task_screen"
             android:screenOrientation="portrait" />
         
         <activity
             android:name=".screen.TaskLocationScreen"
             android:label="@string/task_location"
-            android:screenOrientation="portrait" />
-        
-        <activity 
-            android:name=".screen.NotesScreen"
-            android:label="@string/notes_title"
             android:screenOrientation="portrait" />
         
         <activity 
@@ -72,30 +78,67 @@
             android:screenOrientation="portrait" />
         
         <activity 
-            android:name=".screen.PhotosScreen"
-            android:label="@string/photos_title"
-            android:screenOrientation="portrait" />
-        
-        <activity 
             android:name=".screen.PhotoScreen"
             android:label="@string/photo" />
         
+        <activity
+            android:name=".screen.SettingsScreen"
+            android:label="@string/settings"
+            android:screenOrientation="portrait" />
+        
+        <activity
+            android:name=".screen.ChangePasswordScreen"
+            android:label="@string/change_password"
+            android:screenOrientation="portrait" />
+        
+        <activity
+            android:name=".screen.AboutScreen"
+            android:label="@string/about"
+            android:screenOrientation="portrait" />
+        
+        <activity 
+            android:name=".screen.ContactsScreen"
+            android:label="@string/user_list"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        
+        <activity
+            android:name=".screen.ChatScreen"
+            android:label="@string/chat"
+            android:screenOrientation="portrait" />
+        
+        <activity
+            android:name=".screen.LocationScreen"
+            android:label="@string/all_tasks"
+            android:screenOrientation="portrait" />
+        
         <service
-            android:name=".api.ApiService" />
+            android:enabled="true"
+            android:name="ca.chekit.android.api.ApiService" />
+        
+        <receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
+		    android:permission="com.google.android.c2dm.permission.SEND">
+		    <intent-filter>
+		        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+		        <category android:name="ca.chekit.android" />
+		    </intent-filter>
+		</receiver>
         
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         
         
+        <!-- RELEASE
         <meta-data 
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBi5-pdygDNhoUKOUcAK8-1zLg2fXXtcAQ" />
+            android:value="AIzaSyD3QsPjX1CD1EoDnjBnU9kd5UjV51HANL0" />
+             -->
+             
         
-        <!--
-        <meta-data
-    		android:name="com.google.android.maps.v2.API_KEY"
-    		android:value="AIzaSyCCkIK6qsngHoIH4gNJSySkgwakh56Y428" />
-    	-->	  
+        <meta-data 
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDmI8F3-zEa-93uyp50CEVV6MHtM83WUg4" />
+            
         
     </application>
 
